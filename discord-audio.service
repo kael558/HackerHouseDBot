@@ -1,0 +1,21 @@
+[Unit]
+Description=Discord Audio Bot
+After=network-online.target sound.target bluetooth.target
+Wants=network-online.target
+Requires=bluetooth.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/rahel/discord-audio-bot
+EnvironmentFile=/home/rahel/discord-audio-bot/.env
+ExecStart=/home/rahel/discord-audio-bot/venv/bin/python /home/rahel/discord-audio-bot/discord_audio_bot.py
+User=rahel
+Group=rahel
+Restart=always
+RestartSec=3
+StandardOutput=journal
+StandardError=journal
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
